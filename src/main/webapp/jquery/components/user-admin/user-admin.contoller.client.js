@@ -2,23 +2,45 @@
 
     jQuery(main);
 
+    var tbody;
+    var template;
     function main() {
-        var h1 = jQuery('#title');
-        h1.css('color','red');
-        h1.html('User Administration!');
+        tbody = $('tbody');
+        template = $('.template');
+        $('#createUser').click(createUser);
 
-        var users = [
-            {username:'bob'},
-            {username:'charlie'}
-        ];
+        var promise = fetch('http://localhost:8080/api/user');
+        promise.then(function (response) {
+            return response.json();
+        }).then(renderUsers);
+    }
 
-        var tbody = $('tbody');
-        var tr = $('.template');
+    function createUser() {
+        var username = $('#usernameFld').val();
+        var password = $('#passwordFld').val();
+        var firstName = $('#firstNameFld').val();
+        var lastName = $('#lastNameFld').val();
 
+        var user = {
+            username:username,
+            password:password,
+            firstName:firstName,
+            lastName:lastName
+        };
+
+        fetch('http://localhost:8080/api/user', {
+            method:'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+    }
+    
+    function renderUsers(users) {
         for(var i = 0; i < users.length; i++) {
             var user = users[i];
-            console.log(user);
-            var clone = tr.clone();
+            var clone = template.clone();
             clone.find('.username').html(user.username);
             tbody.append(clone);
         }
