@@ -7,6 +7,8 @@ function UserServiceClient() {
     this.login = login;
     this.url =
         'http://localhost:8080/api/user';
+    this.loginUrl =
+        'http://localhost:8080/api/user';
     var self = this;
 
     function login(username, password) {
@@ -38,7 +40,8 @@ function UserServiceClient() {
             }
         })
         .then(function(response) {
-            if(response.bodyUsed) {
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
                 return response.json();
             } else {
                 return null;
