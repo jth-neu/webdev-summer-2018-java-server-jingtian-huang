@@ -91,7 +91,7 @@
             $emailFld,$phoneFld,$dateOfBirthFld,$roleFld);
 
         userService.updateUser(userId, updatedUser)
-            .then(renderUsers);
+            .then(findAllUsers);
     }
 
     function renderUser(user) {

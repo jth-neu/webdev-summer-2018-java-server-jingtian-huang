@@ -21,7 +21,7 @@ function AdminUserServiceClient() {
         });
     }
 
-    function createUser(user) {
+    function createUser(user,callback) {
          return fetch(self.url, {
             method:'post',
             body: JSON.stringify(user),
@@ -31,7 +31,7 @@ function AdminUserServiceClient() {
         });
     }
 
-    function updateUser(userId,user) {
+    function updateUser(userId,user,callback) {
         return fetch(self.url + '/' + userId, {
             method: 'put',
             body: JSON.stringify(user),
@@ -50,20 +50,20 @@ function AdminUserServiceClient() {
     }
 
 
-    function findAllUsers() {
+    function findAllUsers(callback) {
         return fetch(self.url)
             .then(function (response) {
             return response.json();
         });
     }
 
-    function deleteUser(userId) {
+    function deleteUser(userId,callback) {
         return fetch(self.url + '/' + userId, {
             method:'delete'
         });
     }
 
-    function findUserById(userId) {
+    function findUserById(userId,callback) {
         return fetch(self.url + '/' + userId)
             .then(function(response) {
                 return response.json();
