@@ -5,7 +5,7 @@
     var $firstName;
     var $lastName;
     var $updateBtn;
-    var userService = new UserServiceClient();
+    var userService = new AdminUserServiceClient();
 
     function init() {
         $staticEmail = $("#staticEmail");
@@ -21,7 +21,7 @@
             lastName:$lastName.val()
         };
 
-        userService.updateUser(13,user).then(success);
+        userService.updateUser(12,user).then(success);
     }
 
     function success(response) {
