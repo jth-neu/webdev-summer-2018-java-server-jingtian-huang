@@ -60,6 +60,7 @@ public class UserService {
 		return null;
 	}
 	
+	//TODO: Use HttpSession to verify the login user
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user, HttpSession session) {  
 		Optional<User> data = repository.findUserByUsername(user.getUsername());
