@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
-	<script
-			src="https://code.jquery.com/jquery-3.3.1.min.js"
-			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			crossorigin="anonymous"></script>
-	<script src="../../services/user.service.client.js"></script>
-	<script src="profile.controller.client.js"></script>
+	<meta charset="UTF-8">
+	<title>Course Manager</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href=
+			"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="../../services/user.service.client.js"></script>
+	<script src="../../models/user.model.client.js"></script>
+	<script src="profile.controller.client.js"></script>
 </head>
 <body>
 <div class="container">
@@ -19,34 +20,52 @@
 
 	<form>
 		<div class="form-group row">
-			<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+			<label for="usernameFld" class="col-sm-2 col-form-label">Username</label>
 			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+				<input type="text" readonly class="form-control" id="usernameFld" value="alice">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+			<label for="phoneFld" class="col-sm-2 col-form-label">Phone</label>
 			<div class="col-sm-10">
-				<input type="password" class="form-control" id="inputPassword" placeholder="Password">
+				<input type="password" class="form-control" id="phoneFld" placeholder="(555)123-4567">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="firstName" class="col-sm-2 col-form-label">
-				First Name
+			<label for="emailFld" class="col-sm-2 col-form-label">Email</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="emailFld" placeholder="email@example.com">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="roleFld" class="col-sm-2 col-form-label">Role</label>
+			<div class="col-sm-10">
+				<select class="form-control" id="roleFld">
+					<option value="FACULTY">Faculty</option>
+					<option value="STUDENT">Student</option>
+					<option value="ADMIN">Admin</option></select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="dateOfBirthFld" class="col-sm-2 col-form-label">
+				Date of Birth
 			</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="firstName" placeholder="First Name">
+				<input type="date" class="form-control" id="dateOfBirthFld">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="lastName" class="col-sm-2 col-form-label">
-				Last Name
-			</label>
+			<label class="col-sm-2 col-form-label"></label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="lastName" placeholder="Last Name">
+				<button id="updateBtn" type="button" class="btn btn-success btn-block">Update</button>
 			</div>
 		</div>
-		<button id="updateBtn" type="button" class="btn btn-primary btn-block">Update</button>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label"></label>
+			<div class="col-sm-10">
+				<button id="logoutBtn" type="button" class="btn btn-danger btn-block">Logout</button>
+			</div>
+		</div>
 	</form>
 </div>
 </body>
