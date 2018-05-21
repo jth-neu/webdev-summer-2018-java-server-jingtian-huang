@@ -1,9 +1,8 @@
 package com.example.webapp.services;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,8 +22,14 @@ public class UserService {
 	UserRepository repository;
 	
 	@PostMapping("/api/login")
-	public List<User> login(@RequestBody User user) {
-		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+	public User login(@RequestBody User user) {
+		Optional<User> data =
+				repository.findUserByUsernameAndPassword(user.getUsername(), user.getPassword());
+		if(data.isPresent()) {
+			return data.get();
+		} else {
+			throw new NoSuchElementException("No matching user found.");
+		}
 	}
 	
 	@DeleteMapping("/api/user/{userId}")
@@ -62,7 +67,7 @@ public class UserService {
 	
 	//TODO: Use HttpSession to verify the login user
 	@PostMapping("/api/register")
-	public User register(@RequestBody User user, HttpSession session) {  
+	public User register(@RequestBody User user) {  
 		Optional<User> data = repository.findUserByUsername(user.getUsername());
 		if(data.isPresent()) {
 			throw new IllegalArgumentException("The Username already exist.");
