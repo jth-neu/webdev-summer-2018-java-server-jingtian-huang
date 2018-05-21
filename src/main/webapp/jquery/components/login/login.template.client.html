@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Course Manager</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="register.style.client.css" rel="stylesheet" />
+    <link href="login.style.client.css" rel="stylesheet" />
     <link rel="stylesheet" href=
             "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
@@ -12,31 +12,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../../services/user.service.client.js"></script>
     <script src="../../models/user.model.client.js"></script>
-    <script src="register.controller.client.js"></script>
+    <script src="login.controller.client.js"></script>
 </head>
 <body>
 <div class="container">
     <h1>Sign In</h1>
     <form>
         <div class="form-group row">
-            <label for="username" class="col-sm-2 col-form-label">
+            <label for="login-username" class="col-sm-2 col-form-label">
                 Username </label>
             <div class="col-sm-10">
-                <input class="form-control" id="username" placeholder="Username">
+                <input class="form-control" id="login-username" placeholder="Username">
             </div>
         </div>
         <div class="form-group row">
-            <label for="password" class="col-sm-2 col-form-label">
+            <label for="login-password" class="col-sm-2 col-form-label">
                 Password </label>
             <div class="col-sm-10">
                 <input type="password" class="form-control wbdv-password-fld"
-                       id="password" placeholder="Password">
+                       id="login-password" placeholder="Password">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <button class="btn btn-primary btn-block">Sign in</button>
+                <button id="login-btn" class="btn btn-primary btn-block">Sign in</button>
                 <div class="row">
                     <div class="col-6">
                         <a href="#">Forgot Password?</a>
