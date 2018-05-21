@@ -3,6 +3,8 @@ package com.example.webapp.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +50,27 @@ public class UserService {
 		}
 		return null;
 	}
+	
+	@GetMapping("/api/user/user?username={username}")
+	public User findUserByUsername(@PathVariable("username") String username) {
+		Optional<User> data = repository.findUserByUsername(username);
+		if(data.isPresent()) {
+			return data.get();
+		}
+		return null;
+	}
+	
+	@PostMapping("/api/register")
+	public User register(@RequestBody User user, HttpSession session) {  
+		Optional<User> data = repository.findUserByUsername(user.getUsername());
+		if(data.isPresent()) {
+			throw new IllegalArgumentException("The Username already exist.");
+		} else {
+			repository.save(user);
+			return user;
+		}
+	}
+
 	
 	@PutMapping("/api/user/{userId}")
 	public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
