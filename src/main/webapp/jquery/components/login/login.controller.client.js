@@ -25,7 +25,9 @@
             userService.login(user)
                 .then(function(response) {
                     if(response.status === 200) {
-                        alert("Success!");
+                        window.location.href =
+                            '/jquery/components/profile' +
+                            '/profile.template.client.html?username=' + usernameVal;
                     } else if(response.status === 500) {
                         alert("No matching user found.");
                     } else {
