@@ -7,6 +7,7 @@ function AdminUserServiceClient() {
     this.register = register;
     this.login = login;
     this.updateProfile = updateProfile;
+    this.findUserByUsername = findUserByUsername;
     this.url = 'http://localhost:8080/api/user';
     this.registerUrl = 'http://localhost:8080/api/register';
     this.loginUrl = 'http://localhost:8080/api/login';
@@ -98,6 +99,13 @@ function AdminUserServiceClient() {
             .then(function(response) {
                 return response.json();
             });
+    }
+
+    function findUserByUsername(username, callback) {
+        return fetch(self.url + '?username=' + username)
+            .then(function (response) {
+                return response.json();
+            })
     }
 
 }

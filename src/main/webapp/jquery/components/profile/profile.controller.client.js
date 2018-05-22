@@ -14,7 +14,8 @@
         $phoneFld = $("#phoneFld");
         $dateOfBirthFld = $("#dateOfBirthFld");
         $updateBtn = $("#updateBtn").click(updateUser);
-        findUserById(702);
+        var username = getUrlVars()["username"];
+        findUserByUsername(username);
     }
 
     function updateUser() {
@@ -42,9 +43,10 @@
         }
     }
 
-    function findUserById(userId) {
+
+    function findUserByUsername(username) {
         userService
-            .findUserById(userId)
+            .findUserByUsername(username)
             .then(renderUser);
     }
 
@@ -59,5 +61,18 @@
             dateOfBirth = dateOfBirth.substring(0,dateOfBirth.indexOf("T"));
         }
         $dateOfBirthFld.val(dateOfBirth);
+    }
+
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
     }
 })();

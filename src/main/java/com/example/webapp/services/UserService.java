@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webapp.models.User;
@@ -56,8 +58,8 @@ public class UserService {
 		return null;
 	}
 	
-	@GetMapping("/api/user/user?username={username}")
-	public User findUserByUsername(@PathVariable("username") String username) {
+	@GetMapping(value="/api/user", params="username")
+	public User findUserByUsername(@RequestParam(name="username") String username) {
 		Optional<User> data = repository.findUserByUsername(username);
 		if(data.isPresent()) {
 			return data.get();
