@@ -2,7 +2,7 @@
 
     var $usernameFld;
     var $emailFld,$roleFld,$phoneFld,$dateOfBirthFld;
-    var $updateBtn;
+    var $updateBtn, $logoutBtn;
     var currentUser;
     var userService = new AdminUserServiceClient();
     $(init);
@@ -14,6 +14,7 @@
         $phoneFld = $("#phoneFld");
         $dateOfBirthFld = $("#dateOfBirthFld");
         $updateBtn = $("#updateBtn").click(updateUser);
+        $logoutBtn = $("#logoutBtn").click(logout);
         var username = getUrlVars()["username"];
         findUserByUsername(username);
     }
@@ -74,5 +75,9 @@
             vars[hash[0]] = hash[1];
         }
         return vars;
+    }
+
+    function logout() {
+        window.location.href = '/jquery/components/login/login.template.client.html';
     }
 })();
