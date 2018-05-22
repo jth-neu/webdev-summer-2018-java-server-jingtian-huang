@@ -28,14 +28,17 @@
         user.setEmail($emailFld.val());
         user.setDateOfBirth($dateOfBirthFld.val());
 
-        userService.updateUser(702,user).then(success);
+        userService.updateUser(702,user).then(showAlert);
     }
 
-    function success(response) {
+    function showAlert(response) {
         if(response === null) {
             alert('unable to update.');
         } else {
-            alert('success');
+            $('#successAlert').show('fade');
+            setTimeout(function() {
+                $('#successAlert').hide('fade');
+            }, 10000);
         }
     }
 
