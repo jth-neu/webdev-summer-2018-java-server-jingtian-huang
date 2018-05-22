@@ -110,6 +110,17 @@
             .html(user.lastName);
         clone.find('.wbdv-role')
             .html(user.role);
+        clone.find('.wbdv-email')
+            .html(user.email);
+        clone.find('.wbdv-phone')
+            .html(user.phone);
+
+        var dateOfBirth = user.dateOfBirth;
+        if(dateOfBirth) {
+            dateOfBirth = dateOfBirth.substring(0,dateOfBirth.indexOf("T"));
+        }
+        clone.find('.wbdv-dateOfBirth')
+            .html(dateOfBirth);
         $tbody.append(clone);
     }
 
