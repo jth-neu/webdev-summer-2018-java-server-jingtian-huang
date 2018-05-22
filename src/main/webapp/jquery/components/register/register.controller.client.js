@@ -28,7 +28,7 @@
                 .then(function(response) {
                     if(response.status === 200) {
                         window.location.href =
-                            'http://localhost:8080/jquery/components/profile' +
+                            '/jquery/components/profile' +
                             '/profile.template.client.html?username=' + usernameVal;
                     } else if(response.status === 500) {
                         alert("Username already exist.");
