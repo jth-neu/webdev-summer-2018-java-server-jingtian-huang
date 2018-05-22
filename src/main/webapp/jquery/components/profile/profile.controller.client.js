@@ -1,27 +1,34 @@
 (function(){
+
+    var $usernameFld;
+    var $emailFld,$roleFld,$phoneFld,$dateOfBirthFld;
+    var $updateBtn;
+    var currentUser;
+    var userService = new AdminUserServiceClient();
     $(init);
 
-    var $staticEmail;
-    var $firstName;
-    var $lastName;
-    var $updateBtn;
-    var userService = new AdminUserServiceClient();
-
     function init() {
-        $staticEmail = $("#staticEmail");
-        $firstName = $("#firstName");
-        $lastName = $("#lastName");
+        $usernameFld = $("#usernameFld");
+        $emailFld = $("#emailFld");
+        $roleFld = $("#roleFld");
+        $phoneFld = $("#phoneFld");
+        $dateOfBirthFld = $("#dateOfBirthFld");
         $updateBtn = $("#updateBtn").click(updateUser);
-        findUserById(12);
+        findUserById(702);
     }
 
     function updateUser() {
-        var user = {
-            firstName:$firstName.val(),
-            lastName:$lastName.val()
-        };
+        var user = new User();
+        user.setUsername(currentUser.username);
+        user.setPassword(currentUser.password);
+        user.setFirstName(currentUser.firstName);
+        user.setLastName(currentUser.lastName);
+        user.setRole($roleFld.val());
+        user.setPhone($phoneFld.val());
+        user.setEmail($emailFld.val());
+        user.setDateOfBirth($dateOfBirthFld.val());
 
-        userService.updateUser(12,user).then(success);
+        userService.updateUser(702,user).then(success);
     }
 
     function success(response) {
@@ -39,8 +46,15 @@
     }
 
     function renderUser(user) {
-        $staticEmail.val(user.username);
-        $firstName.val(user.firstName);
-        $lastName.val(user.lastName);
+        currentUser = user;
+        $usernameFld.val(user.username);
+        $emailFld.val(user.email);
+        $roleFld.val(user.role);
+        $phoneFld.val(user.phone);
+        var dateOfBirth = user.dateOfBirth;
+        if(dateOfBirth) {
+            dateOfBirth = dateOfBirth.substring(0,dateOfBirth.indexOf("T"));
+        }
+        $dateOfBirthFld.val(dateOfBirth);
     }
 })();
