@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -115,4 +117,12 @@ public class UserService {
 		}
 		return null;
 	}
+	
+	//TODO: Implement logout function to make the HttpSession invalid.
+	//Since HttpSession is not required for assignment 1, this function returns null at this point.
+	@PostMapping("/api/logout")
+	public User logout(HttpSession session) { 
+		return null;
+	}
+
 }
