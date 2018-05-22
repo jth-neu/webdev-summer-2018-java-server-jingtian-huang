@@ -8,10 +8,10 @@ function AdminUserServiceClient() {
     this.login = login;
     this.updateProfile = updateProfile;
     this.findUserByUsername = findUserByUsername;
-    this.url = 'http://localhost:8080/api/user';
-    this.registerUrl = 'http://localhost:8080/api/register';
-    this.loginUrl = 'http://localhost:8080/api/login';
-    this.profileUrl = 'http://localhost:8080/api/profile';
+    this.url = '/api/user';
+    this.registerUrl = '/api/register';
+    this.loginUrl = '/api/login';
+    this.profileUrl = '/api/profile';
     var self = this;
 
     function login(user,callback) {
