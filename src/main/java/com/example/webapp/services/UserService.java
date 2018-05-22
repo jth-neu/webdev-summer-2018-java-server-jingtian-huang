@@ -95,4 +95,22 @@ public class UserService {
 		}
 		return null;
 	}
+	
+	@PutMapping("/api/profile")
+	public User updateProfile(@RequestBody User newUser) {
+		Optional<User> data = repository.findUserByUsername(newUser.getUsername());
+		if(data.isPresent()) {
+			User user = data.get();
+			user.setFirstName(newUser.getFirstName());
+			user.setUsername(newUser.getUsername());
+			user.setLastName(newUser.getLastName());
+			user.setEmail(newUser.getEmail());
+			user.setDateOfBirth(newUser.getDateOfBirth());
+			user.setPhone(newUser.getPhone());
+			user.setRole(newUser.getRole());
+			repository.save(user);
+			return user;
+		}
+		return null;
+	}
 }

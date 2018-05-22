@@ -28,7 +28,7 @@
         user.setEmail($emailFld.val());
         user.setDateOfBirth($dateOfBirthFld.val());
 
-        userService.updateUser(702,user).then(showAlert);
+        userService.updateProfile(user).then(showAlert);
     }
 
     function showAlert(response) {
