@@ -11,8 +11,14 @@ import com.example.webapp.repositories.CourseRepository;
 public class CourseService {
 	@Autowired
 	CourseRepository courseRepository;	
+	
 	@GetMapping("/api/course")
 	public Iterable<Course> findAllCourses() {
 		return courseRepository.findAll(); 
+	}
+	
+	@PostMapping("/api/course")
+	public Course createCourse(@RequestBody Course course) {
+		return courseRepository.save(course);
 	}
 }
