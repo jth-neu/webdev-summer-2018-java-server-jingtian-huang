@@ -21,4 +21,9 @@ public class CourseService {
 	public Course createCourse(@RequestBody Course course) {
 		return courseRepository.save(course);
 	}
+	
+	@DeleteMapping("/api/course/{courseId}")
+	public void deleteUser(@PathVariable("courseId") int id) {
+		courseRepository.deleteById(id);
+	}
 }
