@@ -17,6 +17,7 @@ public class Course {
 	private Date modified;
 	@OneToMany(mappedBy="course")
 	private List<Module> modules;
+	private String Owner;
 
 	public int getId() {
 		return id;
@@ -48,5 +49,11 @@ public class Course {
 	}
 	public void setModules(List<Module> modules) {
 		this.modules = modules;
+	}
+	public String getOwner() {
+		return Owner;
+	}
+	public void setOwner(String owner) {
+		Owner = owner;
 	}
 }
