@@ -5,13 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.webapp.models.Course;
+
 import com.example.webapp.models.Lesson;
 import com.example.webapp.models.Module;
 import com.example.webapp.repositories.LessonRepository;
@@ -52,5 +53,17 @@ public class LessonService {
 			return module.getLessons();
 		}
 		return null;		
+	}
+	
+	@DeleteMapping("/api/lesson/{lessonId}")
+	public void deleteLesson(@PathVariable("lessonId") int lessonId)
+	{
+		lessonRepository.deleteById(lessonId);
+	}
+	
+	@GetMapping("/api/lesson")
+	public List<Lesson> findAllLessons()
+	{
+		return (List<Lesson>) lessonRepository.findAll();
 	}
 }
