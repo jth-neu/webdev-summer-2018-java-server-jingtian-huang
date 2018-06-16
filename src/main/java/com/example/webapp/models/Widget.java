@@ -20,7 +20,7 @@ public class Widget {
 	private String height;
 	private String widgetType;
 	private int size;
-	
+	private String src;
 	
 	public int getId() {
 		return id;
@@ -81,5 +81,11 @@ public class Widget {
 	}
 	public void setSize(int size) {
 		this.size = size;
+	}
+	public String getSrc() {
+		return src;
+	}
+	public void setSrc(String src) {
+		this.src = src;
 	}
 }
