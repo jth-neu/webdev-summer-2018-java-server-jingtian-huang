@@ -18,6 +18,7 @@ public class Widget {
 	private String style;
 	private String width;
 	private String height;
+	private String widgetType;
 	
 	public int getId() {
 		return id;
@@ -66,5 +67,11 @@ public class Widget {
 	}
 	public void setHeight(String height) {
 		this.height = height;
+	}
+	public String getWidgetType() {
+		return widgetType;
+	}
+	public void setWidgetType(String widgetType) {
+		this.widgetType = widgetType;
 	}
 }
