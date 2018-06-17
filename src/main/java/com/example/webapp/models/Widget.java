@@ -1,12 +1,19 @@
 package com.example.webapp.models;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Widget {
+	
+	private enum ListType {
+		ordered, unordered
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -22,6 +29,9 @@ public class Widget {
 	private int size;
 	private String src;
 	private String href;
+	private String listItem;
+	@Enumerated(EnumType.STRING)
+	private ListType listType;
 	
 	public int getId() {
 		return id;
@@ -94,5 +104,17 @@ public class Widget {
 	}
 	public void setHref(String href) {
 		this.href = href;
+	}
+	public String getListItem() {
+		return listItem;
+	}
+	public void setListItem(String listItem) {
+		this.listItem = listItem;
+	}
+	public ListType getListType() {
+		return listType;
+	}
+	public void setListType(ListType listType) {
+		this.listType = listType;
 	}
 }
