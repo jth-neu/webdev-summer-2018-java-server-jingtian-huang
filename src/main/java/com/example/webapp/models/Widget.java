@@ -6,6 +6,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Widget {
@@ -32,7 +35,16 @@ public class Widget {
 	private String listItem;
 	@Enumerated(EnumType.STRING)
 	private ListType listType;
+	@ManyToOne
+	@JsonIgnore
+	private Lesson lesson;
 	
+	public Lesson getLesson() {
+		return lesson;
+	}
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
+	}
 	public int getId() {
 		return id;
 	}
@@ -44,12 +56,6 @@ public class Widget {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public int getOrder() {
-		return widgetOrder;
-	}
-	public void setOrder(int order) {
-		this.widgetOrder = order;
 	}
 	public String getText() {
 		return text;
@@ -116,5 +122,11 @@ public class Widget {
 	}
 	public void setListType(ListType listType) {
 		this.listType = listType;
+	}
+	public int getWidgetOrder() {
+		return widgetOrder;
+	}
+	public void setWidgetOrder(int widgetOrder) {
+		this.widgetOrder = widgetOrder;
 	}
 }
