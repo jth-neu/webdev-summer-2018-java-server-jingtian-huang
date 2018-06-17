@@ -21,6 +21,7 @@ public class Widget {
 	private String widgetType;
 	private int size;
 	private String src;
+	private String href;
 	
 	public int getId() {
 		return id;
@@ -87,5 +88,11 @@ public class Widget {
 	}
 	public void setSrc(String src) {
 		this.src = src;
+	}
+	public String getHref() {
+		return href;
+	}
+	public void setHref(String href) {
+		this.href = href;
 	}
 }
