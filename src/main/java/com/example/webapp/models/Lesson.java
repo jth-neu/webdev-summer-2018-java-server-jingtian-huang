@@ -26,7 +26,13 @@ public class Lesson {
   @OneToMany(mappedBy="lesson")
   private List<Widget> wigets;
   
-  public int getId() {
+  public List<Widget> getWigets() {
+	return wigets;
+}
+public void setWigets(List<Widget> wigets) {
+	this.wigets = wigets;
+}
+public int getId() {
 		return id;
 	}
 	public void setId(int id) {
