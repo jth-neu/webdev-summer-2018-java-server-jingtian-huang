@@ -50,7 +50,7 @@ public class WidgetService {
 	}
 	
 	@PostMapping("/api/lesson/{lessonId}/widget")
-	public Widget createWidget(@PathVariable("lessonId") int lessonId, @RequestBody Widget widget) {
+	public Widget saveWidget(@PathVariable("lessonId") int lessonId, @RequestBody Widget widget) {
 		Optional<Lesson> data = lessonRepository.findById(lessonId);
 		
 		if(data.isPresent()) {
@@ -64,11 +64,11 @@ public class WidgetService {
 	
 	
 	@PostMapping("/api/lesson/{lessonId}/widgets")
-	public List<Widget> createWidgets(@PathVariable("lessonId") int lessonId, @RequestBody List<Widget> newWidgets) {
+	public List<Widget> saveWidgets(@PathVariable("lessonId") int lessonId, @RequestBody List<Widget> newWidgets) {
 		repository.deleteWidgetsByLessonId(lessonId);
 		List<Widget> result = new ArrayList<Widget>();
 		for(Widget widget : newWidgets) {
-			result.add(createWidget(lessonId,widget));
+			result.add(saveWidget(lessonId,widget));
 		}
 		return result;
 	}
