@@ -1,5 +1,6 @@
 package com.example.webapp.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,5 +47,29 @@ public class WidgetService {
 			return lesson.getWigets();
 		}
 		return null;		
+	}
+	
+	@PostMapping("/api/lesson/{lessonId}/widget")
+	public Widget createWidget(@PathVariable("lessonId") int lessonId, @RequestBody Widget widget) {
+		Optional<Lesson> data = lessonRepository.findById(lessonId);
+		
+		if(data.isPresent()) {
+			Lesson lesson = data.get();
+			widget.setLesson(lesson);
+			return repository.save(widget);
+
+		}
+		return null;		
+	}
+	
+	
+	@PostMapping("/api/lesson/{lessonId}/widgets")
+	public List<Widget> createWidgets(@PathVariable("lessonId") int lessonId, @RequestBody List<Widget> newWidgets) {
+		repository.deleteWidgetsByLessonId(lessonId);
+		List<Widget> result = new ArrayList<Widget>();
+		for(Widget widget : newWidgets) {
+			result.add(createWidget(lessonId,widget));
+		}
+		return result;
 	}
 }
