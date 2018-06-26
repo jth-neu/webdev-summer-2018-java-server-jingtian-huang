@@ -26,7 +26,17 @@ public class Lesson {
   @OneToMany(mappedBy="lesson")
   private List<Widget> wigets;
   
-  public List<Widget> getWigets() {
+  @OneToMany(mappedBy="lesson")
+  @JsonIgnore
+  private List<Assignment> assignments;
+  
+  public List<Assignment> getAssignments() {
+	return assignments;
+}
+public void setAssignments(List<Assignment> assignments) {
+	this.assignments = assignments;
+}
+public List<Widget> getWigets() {
 	return wigets;
 }
 public void setWigets(List<Widget> wigets) {
