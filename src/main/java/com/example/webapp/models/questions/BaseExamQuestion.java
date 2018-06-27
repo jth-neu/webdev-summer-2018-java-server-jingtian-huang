@@ -43,7 +43,7 @@ public class BaseExamQuestion {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getPoints() {
+	public Integer getPoints() {
 		return points;
 	}
 	public void setPoints(int points) {
