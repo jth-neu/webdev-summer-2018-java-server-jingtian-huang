@@ -1,7 +1,9 @@
 package com.example.webapp.models.questions;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 
+@Entity
 public class TrueOrFalseExamQuestion extends BaseExamQuestion {
 	@Column(name = "IS_TRUE", nullable = false)
 	private Boolean isTrue;
