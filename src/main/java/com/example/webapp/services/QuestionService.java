@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.webapp.models.Exam;
 import com.example.webapp.models.questions.BaseExamQuestion;
 import com.example.webapp.models.questions.EssayExamQuestion;
+import com.example.webapp.models.questions.FillInTheBlanksExamQuestion;
+import com.example.webapp.models.questions.MultipleChoiceExamQuestion;
+import com.example.webapp.models.questions.TrueOrFalseExamQuestion;
 import com.example.webapp.repositories.BaseExamQuestionRepository;
 import com.example.webapp.repositories.EssayExamQuestionRepository;
 import com.example.webapp.repositories.ExamRepository;
@@ -71,4 +74,41 @@ public class QuestionService {
 		}
 		return null;
 	}
+	
+	@PostMapping("/api/exam/{examId}/choice")
+	public MultipleChoiceExamQuestion createMultipleChoiceForExam(@RequestBody MultipleChoiceExamQuestion choices,
+			@PathVariable("examId") int id) {
+		Optional<Exam> e = examRepo.findById(id);
+		if(e.isPresent()) {
+			Exam exam = e.get();
+			choices.setExam(exam);
+			return multipleChoiceRepo.save(choices);
+		}
+		return null;
+	}
+	
+	@PostMapping("/api/exam/{examId}/blanks")
+	public FillInTheBlanksExamQuestion createFillInTheBlankForExam(@RequestBody FillInTheBlanksExamQuestion blanks,
+			@PathVariable("examId") int id) {
+		Optional<Exam> e = examRepo.findById(id);
+		if(e.isPresent()) {
+			Exam exam = e.get();
+			blanks.setExam(exam);
+			return fillInTheBlankRepo.save(blanks);
+		}
+		return null;
+	}
+
+	@PostMapping("/api/exam/{examId}/truefalse")
+	public TrueOrFalseExamQuestion createTrueOrFalseForExam(@RequestBody TrueOrFalseExamQuestion truefalse,
+			@PathVariable("examId") int id) {
+		Optional<Exam> e = examRepo.findById(id);
+		if(e.isPresent()) {
+			Exam exam = e.get();
+			truefalse.setExam(exam);
+			return trueOrFalseRepo.save(truefalse);
+		}
+		return null;
+	}
+	
 }
