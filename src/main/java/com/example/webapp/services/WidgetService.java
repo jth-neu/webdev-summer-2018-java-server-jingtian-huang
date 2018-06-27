@@ -44,7 +44,7 @@ public class WidgetService {
 		Optional<Lesson> data = lessonRepository.findById(lessonId);
 		if(data.isPresent()) {
 			Lesson lesson = data.get();
-			return lesson.getWigets();
+			return lesson.getWidgets();
 		}
 		return null;		
 	}

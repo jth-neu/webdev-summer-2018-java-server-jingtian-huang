@@ -24,23 +24,33 @@ public class Lesson {
   private Module module;
   
   @OneToMany(mappedBy="lesson")
-  private List<Widget> wigets;
+  private List<Widget> widgets;
   
   @OneToMany(mappedBy="lesson")
   @JsonIgnore
   private List<Assignment> assignments;
   
-  public List<Assignment> getAssignments() {
+  @OneToMany(mappedBy="lesson")
+  @JsonIgnore
+  private List<Exam> exams;
+  
+  public List<Exam> getExams() {
+	return exams;
+}
+public void setExams(List<Exam> exams) {
+	this.exams = exams;
+}
+public List<Assignment> getAssignments() {
 	return assignments;
 }
 public void setAssignments(List<Assignment> assignments) {
 	this.assignments = assignments;
 }
-public List<Widget> getWigets() {
-	return wigets;
+public List<Widget> getWidgets() {
+	return widgets;
 }
-public void setWigets(List<Widget> wigets) {
-	this.wigets = wigets;
+public void setWidgets(List<Widget> widgets) {
+	this.widgets = widgets;
 }
 public int getId() {
 		return id;
