@@ -55,6 +55,17 @@ public class LessonService {
 		return null;		
 	}
 	
+	@GetMapping("/api/module/{moduleId}/lesson")
+	public List<Lesson> findLessonsForModule(
+			@PathVariable("moduleId") int moduleId) {
+		Optional<Module> data = moduleRepository.findById(moduleId);
+		if(data.isPresent()) {
+			Module module = data.get();
+			return module.getLessons();
+		}
+		return null;		
+	}
+	
 	@DeleteMapping("/api/lesson/{lessonId}")
 	public void deleteLesson(@PathVariable("lessonId") int lessonId)
 	{
